@@ -8,6 +8,8 @@ public final class NoOmniousPotions extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
 
+        getServer().getPluginManager().registerEvents(new RaidLeaderDeathListener(), this);
+
     }
 
     @Override
