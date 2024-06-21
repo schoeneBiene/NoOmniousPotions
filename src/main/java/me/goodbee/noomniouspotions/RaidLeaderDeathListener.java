@@ -9,6 +9,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Iterator;
+
 public class RaidLeaderDeathListener implements Listener {
     @EventHandler
     public void onDrop(EntityDeathEvent event) {
@@ -22,14 +24,7 @@ public class RaidLeaderDeathListener implements Listener {
            return;
        }
 
-       int i = 0;
-       for(ItemStack drop : event.getDrops()) {
-           if (drop.getType() == Material.OMINOUS_BOTTLE) {
-               event.getDrops().remove(i);
-           }
-
-           i++;
-       }
+        event.getDrops().removeIf(drop -> drop.getType() == Material.OMINOUS_BOTTLE);
 
        if(!(event.getDamageSource().getCausingEntity() instanceof LivingEntity)) {
            return;
@@ -46,11 +41,12 @@ public class RaidLeaderDeathListener implements Listener {
                if(animalTamer instanceof LivingEntity) {
                    LivingEntity animalTamerLivingEntity = (LivingEntity) animalTamer;
 
-                   animalTamerLivingEntity.addPotionEffect(new PotionEffect(PotionEffectType.BAD_OMEN, 100 * 60 * 20, 1));
+                   BadOmenUtils.applyBadOmen(animalTamerLivingEntity);
+                   return;
                }
            }
        }
 
-       livingEntity.addPotionEffect(new PotionEffect(PotionEffectType.BAD_OMEN, 100 * 60 * 20, 1));
+       BadOmenUtils.applyBadOmen(livingEntity);
     }
 }
