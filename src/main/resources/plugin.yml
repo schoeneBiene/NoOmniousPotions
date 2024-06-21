@@ -1,0 +1,7 @@
+name: NoOmniousPotions
+version: '${project.version}'
+main: me.goodbee.noomniouspotions.NoOmniousPotions
+api-version: '1.21'
+prefix: NoOmniousPotions
+load: STARTUP
+authors: [goodbee]
