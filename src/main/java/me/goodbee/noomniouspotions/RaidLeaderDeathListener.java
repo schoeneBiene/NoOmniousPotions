@@ -46,11 +46,12 @@ public class RaidLeaderDeathListener implements Listener {
                if(animalTamer instanceof LivingEntity) {
                    LivingEntity animalTamerLivingEntity = (LivingEntity) animalTamer;
 
-                   animalTamerLivingEntity.addPotionEffect(new PotionEffect(PotionEffectType.BAD_OMEN, 100 * 60 * 20, 1));
+                   BadOmenUtils.applyBadOmen(animalTamerLivingEntity);
+                   return;
                }
            }
        }
 
-       livingEntity.addPotionEffect(new PotionEffect(PotionEffectType.BAD_OMEN, 100 * 60 * 20, 1));
+       BadOmenUtils.applyBadOmen(livingEntity);
     }
 }
