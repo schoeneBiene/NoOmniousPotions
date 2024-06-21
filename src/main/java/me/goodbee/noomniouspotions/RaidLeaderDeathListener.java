@@ -5,12 +5,11 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.EntityDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class NoDropListener implements Listener {
+public class RaidLeaderDeathListener implements Listener {
     @EventHandler
     public void onDrop(EntityDeathEvent event) {
        if(!(event.getEntity() instanceof Raider)) {
@@ -31,8 +30,6 @@ public class NoDropListener implements Listener {
 
            i++;
        }
-
-       // FIXME: This does not account for patrol captains, which increasingly add an amplifier
 
        if(!(event.getDamageSource().getCausingEntity() instanceof LivingEntity)) {
            return;
